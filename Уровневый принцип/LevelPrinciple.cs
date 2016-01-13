@@ -9,7 +9,7 @@ using System.Drawing;
 
 namespace Уровневый_принцип
 {
-    class LevelPrinciple:Graph
+    class LevelPrinciple : Graph
     {
         public List<List<int>> Rez;
         public List<List<int>> Smin = new List<List<int>>();
@@ -17,9 +17,9 @@ namespace Уровневый_принцип
 
         protected List<int> h;
 
-        public LevelPrinciple():base()
+        public LevelPrinciple() : base()
         {
-        
+
             h = new List<int>();
             Rez = new List<List<int>>();
         }

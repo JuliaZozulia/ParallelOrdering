@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace Уровневый_принцип
 {
-    class InterruptCondition : LevelPrinciple
+    class LevelPrincipleForTi : LevelPrinciple
     {
 
-        public InterruptCondition() : base() { }
+        public LevelPrincipleForTi() : base() { }
 
 
         protected override List<List<int>> FindS(List<List<int>> originalA, int flag)
@@ -96,8 +98,8 @@ namespace Уровневый_принцип
             }
             return s;
         }
-                
-        public  void Build1()
+
+        override public void Build()
         {
 
             A = DeepClone(mainA) as List<List<int>>;
@@ -127,17 +129,17 @@ namespace Уровневый_принцип
                     {
                         if (k < S.Count) //длина искомого упорядочения не может быть больше числа вершин
                         {
-                            //если еще остасли вершины, которые можно было ставить на прошлом шаге, то ставим их
+                            //если еще остаслись вершины, которые можно было ставить на прошлом шаге, то ставим их
                             //иначе, т.е. если (S0.Count == 0), ищем новые
-                            if (S0.Count == 0)
-                            {
-                                S0 = AND(S[k], s[0]);
-                                k++;
-                            }
+                            //   if (S0.Count == 0)
+                            //   {
+                            S0 = AND(S[k], s[0]);
+                            k++;
+                            //  }
 
                         }
                         else
-                        {                           
+                        {
                             break;
                         }
                     }
@@ -190,7 +192,7 @@ namespace Уровневый_принцип
                         return i;
                     }
                 }
-                
+
             }
             return r.Next(0, S0.Count);
 
@@ -206,7 +208,7 @@ namespace Уровневый_принцип
         {
             if (Rez.Count > 1)
             {
-               // List<int> sorted = S0.
+                // List<int> sorted = S0.
 
             }
             return r.Next(0, S0.Count);
@@ -215,27 +217,24 @@ namespace Уровневый_принцип
 
         List<int> fromPreviousLevel(List<List<int>> Rez)  //return all ver from previous level from rezult which are still exsist
         {
-            List <int> newv = new List<int>();
+            List<int> newv = new List<int>();
             if (Rez.Count > 1)
             {
-                for (int i=0; i < Rez[Rez.Count - 1].Count; i++)
+                for (int i = 0; i < Rez[Rez.Count - 1].Count; i++)
                 {
-                    try
+
+                    if (A[Rez[Rez.Count - 1][i]][0] > 0)
                     {
-                        if (A[Rez[Rez.Count - 1][i]][0] > 0)
-                        {
-                            newv.Add(Rez[Rez.Count - 1][i]);
-                        }
+                        newv.Add(Rez[Rez.Count - 1][i]);
                     }
-                    catch { }
+
                 }
             }
             return newv;
         }
 
-
-        //  public void BuildEuristic()
-        public override void Build()
+        //unnecessary, remove late
+        public void BuildEuristic()
         {
             A = DeepClone(mainA) as List<List<int>>;
             int l = FindS(A, 1).Count;
@@ -488,6 +487,56 @@ namespace Уровневый_принцип
                 }
             }
             return -1;
+        }
+
+        override public void Draw(Graphics g)
+        {
+            Dictionary<int, Point> Node = new Dictionary<int, Point>();
+            g.Clear(Color.Snow);
+            int w = 5;
+            int x1 = 10, dx = 70;
+            int y1 = 10, dy = 70;
+
+            S = FindS(mainA, 0);
+            if (S.Count > 0)
+            {
+                for (int i = 0; i < S.Count; i++)
+                {
+                    for (int j = 0; j < S[i].Count; j++)
+                    {
+                        if (!Node.ContainsKey(S[i][j]))
+                        {
+                            Node.Add(S[i][j], new Point(x1 + dx * j, y1 + dy * i));
+                        }
+                    }
+                }
+
+                for (int i = 0; i < S.Count; i++)
+                {
+                    for (int j = 0; j < S[i].Count; j++)
+                    {
+                        Point p1 = new Point(), p2;
+                        List<int> connected = ConnectedNode(S[i][j], mainA);
+                        Color c = Color.FromArgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255));
+                        Pen pen = new Pen(c, w);
+                        for (int k = 0; k < connected.Count; k++)
+                        {
+                            Node.TryGetValue(S[i][j], out p1);
+                            Node.TryGetValue(connected[k], out p2);
+                            pen.EndCap = LineCap.ArrowAnchor;
+                            g.DrawLine(pen, p1, p2);
+                        }
+                        Node.TryGetValue(S[i][j], out p1);
+                        g.DrawString((S[i][j]).ToString(), new Font("Times New Roman", 12.0f), Brushes.Black, p1);
+                        g.DrawString((mainA[S[i][j]][S[i][j]]).ToString(), new Font("Times New Roman", 12.0f), Brushes.Brown, p1.X - 2*x1, p1.Y);
+                        //Size size = new Size(10, 10);
+                        //pen.Color = Color.Brown;
+                        //pen.Width = 1;
+                        //g.DrawRectangle(pen, new Rectangle(new Point(p1.X - 2 * x1, p1.Y - y1), size));
+                    }
+                }
+            }
+
         }
     }
 }
