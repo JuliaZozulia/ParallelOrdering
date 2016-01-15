@@ -23,7 +23,7 @@ namespace Уровневый_принцип
             InitializeComponent();
         }
         //LevelPrinciple G;
-        Decomposition G;
+        InterruptCondition G;
         bool IsConst = false;
         bool FromFile = false;
 
@@ -47,7 +47,7 @@ namespace Уровневый_принцип
         private void LoadFromFile_Click(object sender, EventArgs e)
         {
             FromFile = true;
-            G = new Decomposition();
+            G = new InterruptCondition();
             G.ReadFromFile();
             G.UpdateDG(dg_enter);
             FromFile = false;
@@ -72,7 +72,8 @@ namespace Уровневый_принцип
                 G.SetH(dg_h, IsConst);
                 G.FindMaxMin(1000);
                 //
-               // G.findAnySpanningTree();
+                // G.findAnySpanningTree();
+                G.canInterrupt();
                 G.S_DG_Max(dg_Smax);
                 G.S_DG_Min(dg_Smin);
                 label3.Text = "З мінімальною довжиною \n впорядкування. \n Довжина - " + dg_Smin.RowCount.ToString();
@@ -108,7 +109,7 @@ namespace Уровневый_принцип
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            G = new Decomposition();
+          //  G = new Decomposition();
             G.ReadFromTable(dg_enter);
             G.UpdateDG(dg_enter);
             if (!G.Check())
