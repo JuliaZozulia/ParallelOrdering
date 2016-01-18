@@ -39,16 +39,6 @@ namespace Уровневый_принцип
          
         }
 
-        //public IEnumerable<IEnumerable<T>> GetPowerSet<T>(List<T> list)
-        //{
-        //    return from m in Enumerable.Range(0, 1 << list.Count)
-        //           select
-        //               from i in Enumerable.Range(0, list.Count)
-        //               where (m & (1 << i)) != 0
-        //               select list[i];
-        //}
-
-
         public static List<List<int>> GetPowerSet(List<int> list)
         {
             List<List<int>> ps = new List<List<int>>();
@@ -75,12 +65,6 @@ namespace Уровневый_принцип
             }
             return ps;
         }
-        //public static IEnumerable<IEnumerable<T>> Combinations<T>(this IEnumerable<T> elements, int k)
-        //{
-        //    return k == 0 ? new[] { new T[0] } :
-        //      elements.SelectMany((e, i) =>
-        //        elements.Skip(i + 1).Combinations(k - 1).Select(c => (new[] { e }).Concat(c)));
-        //}
 
         List<int> getPossibleVs(int mUpIPlusOne)
         {
@@ -251,10 +235,8 @@ namespace Уровневый_принцип
                 }
 
             }
-
-            
+                        
             return false;
-
 
     }
     }

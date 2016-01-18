@@ -10,7 +10,6 @@ namespace Уровневый_принцип
     class Decomposition : LevelPrinciple
     {
         List<List<int>> spanningTree;
-        //  List<List<int>> gMinusSpanningTree;
         List<Point> listSpanningTree;
         List<Point> gMinusSpanningTree;
         public List<Point> conflictPairs;
@@ -113,7 +112,7 @@ namespace Уровневый_принцип
             return false;
         }
 
-         bool hasNextOnLevel(int v, int currentLevel)
+        bool hasNextOnLevel(int v, int currentLevel)
         {
 
             List<int> connected = ConnectedNode(v, mainA);
@@ -181,7 +180,7 @@ namespace Уровневый_принцип
             {
                 return;
             }
-         //   getAllConflicts();
+            //   getAllConflicts();
             while (getAllConflicts().Count > 0)
             {
                 conflictPairs = getAllConflicts();
@@ -194,7 +193,7 @@ namespace Уровневый_принцип
                     Rez[LevelOfV(Rez, conf.Y)].Remove(conf.Y);
                     Rez[currentLevel + 1].Add(conf.Y);
                     conflictPairs.Remove(conf);
-                    continue; 
+                    continue;
                 }
 
                 int t = -1;
@@ -251,17 +250,17 @@ namespace Уровневый_принцип
                 // п.7. Збільшуємо довжину впорядкування, додавши місце в упорядкування відразу за поточним. 
                 // Ставимо на нього кінцеву вершину з конфліктної пари. 
                 Rez.Insert(currentLevel + 1, new List<int>());
-                Rez[LevelOfV(Rez, conf.Y)].Remove(conf.Y); 
+                Rez[LevelOfV(Rez, conf.Y)].Remove(conf.Y);
                 Rez[currentLevel + 1].Add(conf.Y);
                 conflictPairs.Remove(conf);
 
-                
+
                 AddVInroFreePlaces(currentLevel);
                 currentLevel++;
                 AddVInroFreePlaces(currentLevel);
-                
 
-               // getAllConflicts();
+
+                // getAllConflicts();
             }
 
             for (int i = 0; i < Rez.Count; i++)
@@ -303,7 +302,7 @@ namespace Уровневый_принцип
                     j++;
                 }
             }
-        }  
+        }
     }
 }
 

@@ -37,6 +37,9 @@
             this.Enter = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -50,6 +53,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dg_Smin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dg_h)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
@@ -70,7 +74,7 @@
             // 
             this.LoadFromFile.Location = new System.Drawing.Point(6, 42);
             this.LoadFromFile.Name = "LoadFromFile";
-            this.LoadFromFile.Size = new System.Drawing.Size(123, 46);
+            this.LoadFromFile.Size = new System.Drawing.Size(136, 46);
             this.LoadFromFile.TabIndex = 1;
             this.LoadFromFile.Text = "Зчитати граф з файлу";
             this.LoadFromFile.UseVisualStyleBackColor = true;
@@ -108,26 +112,26 @@
             this.dg_h.BackgroundColor = System.Drawing.Color.Snow;
             this.dg_h.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dg_h.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dg_h.Location = new System.Drawing.Point(53, 290);
+            this.dg_h.Location = new System.Drawing.Point(55, 179);
             this.dg_h.Name = "dg_h";
-            this.dg_h.Size = new System.Drawing.Size(76, 451);
+            this.dg_h.Size = new System.Drawing.Size(48, 23);
             this.dg_h.TabIndex = 5;
             this.dg_h.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dg_h_RowsAdded);
             // 
             // Enter
             // 
-            this.Enter.Location = new System.Drawing.Point(6, 150);
+            this.Enter.Location = new System.Drawing.Point(6, 25);
             this.Enter.Name = "Enter";
-            this.Enter.Size = new System.Drawing.Size(123, 53);
+            this.Enter.Size = new System.Drawing.Size(136, 74);
             this.Enter.TabIndex = 6;
-            this.Enter.Text = "Знайти впорядкування";
+            this.Enter.Text = "Модифікований рівневий принцип";
             this.Enter.UseVisualStyleBackColor = true;
             this.Enter.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 206);
+            this.label1.Location = new System.Drawing.Point(18, 160);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 19);
             this.label1.TabIndex = 7;
@@ -135,11 +139,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox4);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Controls.Add(this.Enter);
             this.groupBox1.Controls.Add(this.dg_h);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.LoadFromFile);
@@ -147,16 +151,49 @@
             this.groupBox1.ForeColor = System.Drawing.Color.SaddleBrown;
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(148, 777);
+            this.groupBox1.Size = new System.Drawing.Size(158, 777);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Вхідні данні:";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.button3);
+            this.groupBox4.Controls.Add(this.Enter);
+            this.groupBox4.Controls.Add(this.button2);
+            this.groupBox4.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.groupBox4.Location = new System.Drawing.Point(6, 220);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(146, 239);
+            this.groupBox4.TabIndex = 14;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Знайти:";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(6, 164);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(136, 67);
+            this.button3.TabIndex = 13;
+            this.button3.Text = "Перевірка доцільності переривань";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(6, 105);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(136, 53);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "Метод декомпозиції";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(6, 94);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(123, 50);
+            this.button1.Size = new System.Drawing.Size(136, 50);
             this.button1.TabIndex = 11;
             this.button1.Text = "Зчитати граф з таблиці";
             this.button1.UseVisualStyleBackColor = true;
@@ -165,7 +202,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 290);
+            this.label2.Location = new System.Drawing.Point(18, 179);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 19);
             this.label2.TabIndex = 10;
@@ -174,25 +211,27 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(31, 253);
+            this.radioButton2.Location = new System.Drawing.Point(62, 483);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(83, 23);
             this.radioButton2.TabIndex = 9;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "h = const";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.Visible = false;
             this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(31, 230);
+            this.radioButton1.Location = new System.Drawing.Point(62, 512);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(67, 23);
             this.radioButton1.TabIndex = 8;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "h різні";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.Visible = false;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // groupBox2
@@ -258,6 +297,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dg_h)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -284,6 +324,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.GroupBox groupBox4;
     }
 }
 

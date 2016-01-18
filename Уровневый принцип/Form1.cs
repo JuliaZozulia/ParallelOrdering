@@ -23,7 +23,7 @@ namespace Уровневый_принцип
             InitializeComponent();
         }
         //LevelPrinciple G;
-        InterruptCondition G;
+        Graph G;
         bool IsConst = false;
         bool FromFile = false;
 
@@ -47,7 +47,7 @@ namespace Уровневый_принцип
         private void LoadFromFile_Click(object sender, EventArgs e)
         {
             FromFile = true;
-            G = new InterruptCondition();
+            G = new Graph();
             G.ReadFromFile();
             G.UpdateDG(dg_enter);
             FromFile = false;
@@ -58,26 +58,14 @@ namespace Уровневый_принцип
             }
             Graphics g = panel1.CreateGraphics();
             G.Draw(g);
-
-
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (G != null)
             {
-                Graphics g = panel1.CreateGraphics();
-                G.Draw(g);
-                G.SetH(dg_h, IsConst);
-                G.FindMaxMin(1000);
-                //
-                // G.findAnySpanningTree();
-                G.canInterrupt();
-                G.S_DG_Max(dg_Smax);
-                G.S_DG_Min(dg_Smin);
-                label3.Text = "З мінімальною довжиною \n впорядкування. \n Довжина - " + dg_Smin.RowCount.ToString();
-                label4.Text = "З максимальною довжиною \n впорядкування. \n Довжина - " + dg_Smax.RowCount.ToString();
+                G = new LevelPrincipleForTi();
+                Build();
             }
         }
 
@@ -109,7 +97,10 @@ namespace Уровневый_принцип
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-          //  G = new Decomposition();
+            if (G == null)
+            {
+                G = new Graph();
+            }
             G.ReadFromTable(dg_enter);
             G.UpdateDG(dg_enter);
             if (!G.Check())
@@ -164,7 +155,52 @@ namespace Уровневый_принцип
             dg_enter.Columns.RemoveAt(e.RowIndex);
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (G != null)
+            {
+                G = new Decomposition();
+                Build();
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (G != null)
+            {
+                G = new InterruptCondition();               
+                Build();
+                InterruptCondition g1 = new InterruptCondition(); //really sorry for this
+                g1.ReadFromTable(dg_enter);
+                g1.canInterrupt();
+
+                if (g1.canInterrupt())
+                {
+                    label3.Text = "Отримане впорядкування \nз перериваннями \nДовжина - " + dg_Smin.RowCount.ToString();
+                    label4.Text = "Оптимальне впорядкування належить до класу\nвпорядкувань з перериваннями.";
+                }
+                else
+                {
+                    dg_Smin.Visible = false;
+                }
+                dg_Smax.Visible = false;
 
 
+                //InterruptCondition
+            }
+        }
+
+        void Build()
+        {
+            G.ReadFromTable(dg_enter);
+            Graphics g = panel1.CreateGraphics();
+            G.Draw(g);
+            G.SetH(dg_h, IsConst);
+            G.FindMaxMin(1000);
+            G.S_DG_Max(dg_Smax);
+            G.S_DG_Min(dg_Smin);
+            label3.Text = "З мінімальною довжиною \n впорядкування. \n Довжина - " + dg_Smin.RowCount.ToString();
+            label4.Text = "З максимальною довжиною \n впорядкування. \n Довжина - " + dg_Smax.RowCount.ToString();
+        }
     }
 }

@@ -38,6 +38,16 @@ namespace Уровневый_принцип
             r = new Random();
         }
 
+        //G.SetH(dg_h, IsConst);
+        //        G.FindMaxMin(1000);
+        //        G.canInterrupt();
+        //        G.S_DG_Max(dg_Smax);
+        //        G.S_DG_Min(dg_Smin);
+        public virtual void SetH(DataGridView dg_enter, bool flag) { }
+        public virtual void FindMaxMin(int n) { }
+        public virtual void S_DG_Max(DataGridView dg_enter) { }
+        public virtual void S_DG_Min(DataGridView dg_enter) { }
+
         protected List<int> ConnectedNode(int el, List<List<int>> A)
         {
             List<int> returning = new List<int>();

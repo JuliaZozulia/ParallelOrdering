@@ -86,7 +86,7 @@ namespace Уровневый_принцип
         }
 
 
-        public void FindMaxMin(int n)
+        override public void FindMaxMin(int n)
         {
             int max = 0;
             int min = System.Int32.MaxValue;
@@ -108,7 +108,7 @@ namespace Уровневый_принцип
             }
         }
 
-        public void S_DG_Max(DataGridView dg_enter)
+        override public void S_DG_Max(DataGridView dg_enter)
         {
             dg_enter.ColumnHeadersVisible = false;
             dg_enter.RowHeadersVisible = false;
@@ -135,7 +135,7 @@ namespace Уровневый_принцип
 
             }
         }
-        public void S_DG_Min(DataGridView dg_enter)
+        override public void S_DG_Min(DataGridView dg_enter)
         {
             dg_enter.ColumnHeadersVisible = false;
             dg_enter.RowHeadersVisible = false;
@@ -159,7 +159,7 @@ namespace Уровневый_принцип
                 }
             }
         }
-        public void SetH(DataGridView dg_enter, bool flag)
+        override public void SetH(DataGridView dg_enter, bool flag)
         {
             h.Clear();
             if (flag)
